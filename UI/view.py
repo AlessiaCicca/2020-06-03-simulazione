@@ -8,7 +8,7 @@ class View(ft.UserControl):
         self._page = page
         self._page.title = "Template application using MVC and DAO"
         self._page.horizontal_alignment = 'CENTER'
-        self._page.theme_mode = ft.ThemeMode.DARK
+        self._page.theme_mode = ft.ThemeMode.LIGHT
         # controller (it is not initialized. Must be initialized in the main, after the controller is created)
         self._controller = None
         # graphical elements
@@ -20,22 +20,25 @@ class View(ft.UserControl):
 
     def load_interface(self):
         # title
-        self._title = ft.Text("Hello World", color="blue", size=24)
+        self._title = ft.Text("Simulazione d'esame 03/06/2020", color="blue", size=24)
         self._page.controls.append(self._title)
 
         #ROW with some controls
         # text field for the name
-        self.txt_name = ft.TextField(
-            label="name",
-            width=200,
-            hint_text="Insert a your name"
-        )
-
+        self.txt_goal = ft.TextField(
+                label="Goal Fatti(x)")
+        self.txt_giocatori = ft.TextField(
+            label="Giocatori")
         # button for the "hello" reply
-        self.btn_hello = ft.ElevatedButton(text="Hello", on_click=self._controller.handle_hello)
-        row1 = ft.Row([self.txt_name, self.btn_hello],
+        self.btn_grafo = ft.ElevatedButton(text="Crea Grafo", on_click=self._controller.handle_grafo)
+        self.btn_top = ft.ElevatedButton(text="Top Player", on_click=self._controller.handle_top)
+        self.btn_dream = ft.ElevatedButton(text="Dream Team", on_click=self._controller.handle_dream)
+        row1 = ft.Row([self.txt_goal, self.btn_grafo],
                       alignment=ft.MainAxisAlignment.CENTER)
         self._page.controls.append(row1)
+        row2 = ft.Row([self.btn_top,self.txt_giocatori ,self.btn_dream],
+                      alignment=ft.MainAxisAlignment.CENTER)
+        self._page.controls.append(row2)
 
         # List View where the reply is printed
         self.txt_result = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
